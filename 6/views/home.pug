@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .container
+    div.bg-light.text-center(border="1")
+      .row
+        .col.p-3.border
+          h3.lead Name
+        .col.p-3.border
+          h3.lead Work
+        .col.p-3.border
+          h3.lead Salary
+        .col.p-3.border
+          h3.lead Action
+      each data in name
+        .row
+          .col.p-2.border= data.name
+          .col.p-2.border= data.work_id.name
+          .col.p-2.border= data.salary_id.salary
+          .col.p-2.border
+            button.mr-2 Delete
+            button Edit
