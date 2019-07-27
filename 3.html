@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Soal 3</title>
+
+    <style type="text/css">
+  		label{
+  			font-weight: 600;
+  		}
+  		td{
+  			padding: 0.5rem;
+  		}
+  		input{
+  			padding: 0.25rem;
+  		}
+
+  		input.text{
+  			width: 150px;
+  		}
+
+      #cetakGambar td{
+        text-align: center;
+      }
+	  </style>
+
+  </head>
+  <body>
+    <label for="panjang">Panjang: </label>
+    <input type="text" id="panjang" placeholder="Masukkan panjang gambar">
+    <button onclick="cetak_gambar(panjangGambar())">Cetak Gambar</button>
+    <div id="cetakGambar"></div>
+
+    <script type="text/javascript">
+      function panjangGambar() {
+        var panjang = parseInt(document.getElementById('panjang').value);
+        if (!panjang) {
+          alert('Nilai panjang belum dimasukkan');
+          throw Error('Nilai panjang belum dimasukkan')
+        } else if (panjang%2 == 0) {
+          alert('Panjang harus ganjil');
+          throw Error('Panjang harus ganjil');
+        }
+        return panjang;
+      }
+
+      function cetak_gambar(panjang) {
+        var innerHTML = `<table><tr><td colspan="${panjang*2}">--- panjang ---</td></tr>`;
+        for (var i=0; i<panjang; i++) {
+          var middle = (panjang+1) / 2;
+          innerHTML+= '<tr>';
+
+          for (var j=0; j<panjang; j++) {
+            if (i==middle-1 || j==0 || j==panjang-1) {
+              innerHTML+= '<td>*<td>';
+            } else {
+              innerHTML+= '<td>=<td>';
+            }
+          }
+
+          innerHTML+= '</tr>';
+        }
+        innerHTML+= '</table>';
+        document.getElementById('cetakGambar').innerHTML = innerHTML;
+      }
+    </script>
+  </body>
+</html>

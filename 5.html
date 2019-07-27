@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><label for="array1">Array 1</label></td>
+        <td><input class="text" type="text" name="array" placeholder="Masukkan huruf" required> <sub>Gunakan tanda Koma(,) untuk memisahkan huruf</sub></td>
+      </tr>
+      <tr>
+        <td><label for="array2">Array 2</label></td>
+        <td><input class="text" type="text" name="array" placeholder="Masukkan huruf" required> <sub>Gunakan tanda Koma(,) untuk memisahkan huruf</sub></td>
+      </tr>
+      <tr>
+        <td><label for="array3">Array 3</label></td>
+        <td><input class="text" type="text" name="array" placeholder="Masukkan huruf" required> <sub>Gunakan tanda Koma(,) untuk memisahkan huruf</sub></td>
+      </tr>
+      <tr>
+        <td><button onclick="sort_array(getArray())">Sort Array</button></td>
+      </tr>
+    </table>
+    <div id="sorted"></div>
+
+  <script type="text/javascript">
+    function getArray() {
+      const aData = document.getElementsByName('array');
+      let aDataReady = [];
+      for (let i=0; i<aData.length; i++) {
+        let temp = aData[i].value;
+        if(temp) {
+          temp = temp.split(',')
+          temp = temp.map( str => str.trim() );
+          aDataReady.push(temp);
+        }
+      }
+
+      return aDataReady;
+    }
+
+    function sort_array(aData) {
+      for (let i=0; i<aData.length; i++) {
+        for (let j=aData.length-1; j>i; j--){
+          if (aData[j-1].length > aData[j].length) {
+            let temp = aData[j];
+            aData[j] = aData[j-1];
+            aData[j-1] = temp;
+          }
+        }
+      }
+
+      aData.map( (array, index) => {
+        for (let i=0; i<array.length; i++) {
+          for (let j=array.length-1; j>i; j--){
+            if (array[j-1].charCodeAt(0) > array[j].charCodeAt(0)) {
+              let temp = array[j];
+              array[j] = array[j-1];
+              array[j-1] = temp;
+              aData[index] = array;
+            }
+          }
+        }
+      });
+
+      document.getElementById('sorted').innerHTML = JSON.stringify(aData);
+      console.dir(aData)
+    }
+  </script>
+  </body>
+</html>

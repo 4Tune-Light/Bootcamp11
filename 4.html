@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Soal 4</title>
+    <style type="text/css">
+      label{
+        font-weight: 600;
+      }
+      #hitungVokal{
+        font-size: 1.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="kalimat">Kalimat: </label>
+    <input type="text" id="kalimat" placeholder="Masukkan kalimat">
+    <button onclick="count_vowels(sentence())">Hitung Vokal</button><br><br>
+    <div id="hitungVokal"></div>
+
+    <script type="text/javascript">
+      function sentence() {
+        return document.getElementById('kalimat').value;
+      }
+      function count_vowels(sentence){
+        var letter = sentence.split('');
+        console.dir(letter);
+        var count = 0;
+        letter.map(key => {
+          if (key == 'a' || key == 'i' || key == 'u' || key == 'e' || key == 'o') {
+            count++;
+          }
+        });
+
+        document.getElementById('hitungVokal').innerHTML = `Huruf Vokal: ${count}`;
+	    }
+    </script>
+  </body>
+</html>
